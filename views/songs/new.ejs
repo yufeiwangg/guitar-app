@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Add a New Song</title>
+</head>
+<body>
+    <h2>Add a New Song</h2>
+    <form action="/songs" method="POST">
+        <label>Songs:
+            <input type="text" name="song">
+        </label></br>
+        <label>Difficulty:
+            <input type="number" name="difficulty">
+        </label></br>
+            <input type="submit" value="Add Song!">
+    </form>
+</body>
+</html>

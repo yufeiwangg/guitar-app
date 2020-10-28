@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Song: <%= song.song %></h1>
+    <p>Difficulty: <%= song.difficulty%></p>
+    <a href="/songs/<%= song._id %>/practice">Add practice</a>
+    <h1>Time Practiced:</h1>
+    <% if (song.timePracticed.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Hours</th>
+              <th>Minutes</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% song.timePracticed.forEach(function(t) { %>
+              <tr>
+                <td><%= t.hours %></td>
+                <td><%= t.minutes %></td>
+                <td><%= t.date %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Practices Yet</h5>
+      <% } %>
+
+      <div>Skills Required:</div>
+    <ul>
+      <%- song.skillsNeeded.map(s => 
+        `<li>${s}</li>`
+      ).join('') %>
+
+      <% for (let i = 0; i < 1; i++) {
+        console.log(Object.entries(song.skillsNeeded[i]));
+      } %>
+
+    </ul>
+    <!-- end cast list -->
+  </section>
+    
+
+  <!-- what does "ACTION" MEAN? how is it different from ROUTING? in routes.js?  -->
+  <!-- i believe that the action merely takes you to this particular url, but you still have to handle the request in your routes.   -->
+  <form action="/songs/<%= song._id %>/addskill" method="POST">
+    <select name="skillId">
+        <% for (let i = 0; i < skills.length; i++) { %>
+          <option value="<%= skills[i]._id %>"><%= skills[i].skill %></option>
+       <% } %>
+    </select>
+    <button type="submit">Add this skill to songs</button>
+  </form>
+
+</body>
+</html>

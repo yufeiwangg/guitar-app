@@ -1,0 +1,48 @@
+<h1 class="title">Welcome, <%- user.name %></h1>
+        <div class="tablecontainer">
+            <table class="table center is-hoverable is-bordered">
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>Difficulty</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% user.skill.forEach(function (s) { %>
+                        <tr>
+                            <td><%= s.skill %></td>
+                            <td><%= s.difficulty %></td>
+        
+                            <td><a href="/skills/<%= s._id %>">Details</a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <button class="button center"><a href="/skills/new">Add a new Skill</a></button>
+            
+        </div>
+        
+        <div class="tablecontainer">
+            <table class="table center is-hoverable is-bordered">
+                <thead>
+                    <tr>
+                        <th>Song</th>
+                        <th>Difficulty</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% user.song.forEach(function (s) { %>
+                        <tr>
+                            <td><%= s.song %></td>
+                            <td><%= s.difficulty %></td>
+        
+                            <td><a href="/songs/<%= s._id %>">Details</a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <button class="button center"><a href="/songs/new">Add a new Song</a></button>
+        </div>
+        <a href="/logout">Log Out</a>

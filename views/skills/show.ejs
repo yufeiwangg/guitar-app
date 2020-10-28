@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Skill: <%= skill.skill %></h1>
+    <p>Difficulty: <%= skill.difficulty %></p>
+    <a href="/skills/<%= skill._id %>/practice">Add practice</a>
+    <h1>Time Practiced:</h1>
+    <% if (skill.timePracticed.length) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Hours</th>
+              <th>Minutes</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% skill.timePracticed.forEach(function(t) { %>
+              <tr>
+                <td><%= t.hours %></td>
+                <td><%= t.minutes %></td>
+                <td><%= t.date %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Practices Yet</h5>
+      <% } %>
+
+      <div>Songs You can play with this skill:</div>
+  <ul>
+    <%- skill.songs.map(s => 
+      `<li>${s.song}</li>`
+    ).join('') %>
+  </ul>
+  <!-- end cast list -->
+</section>
+	
+<!-- add to cast form below this comment -->
+<form action="/skills/<%= skill._id %>/addsong" method="POST">
+  <select name="songId">
+    <%- songs.map(s => 
+      `<option value="${s._id}">${s.song}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add this song!</button>
+</form>
+</body>
+</html>
+

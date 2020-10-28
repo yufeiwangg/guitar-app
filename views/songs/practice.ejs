@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><h2>Add Time Practiced</h2>
+    <form method="POST"
+      action="/songs/<%= song._id %>/practice/create">
+      <label>Time Practiced</label>
+      <input type="number" name="hours"><p>Hours</p>
+      <input type="number" name="minutes"><p>Minutes</p>
+      <label>Date:</label>
+      <input type="date" name="date">
+      <input type="submit" value="Add Time">
+    </form>
+</body>
+</html>
