@@ -1,7 +1,3 @@
-const User = require('../models/user');
-const Song = require('../models/song');
-const Skill = require('../models/skill');
-
 function newSong(req, res){
     res.render('songs/new');
 }
@@ -13,12 +9,10 @@ function create(req, res){
     });
 }
 
-//need to fix populating the skills owo
 async function showSong(req, res){
-    const skills = req.user.skill;
     const songs = req.user.song;
     const song = songs.id(req.params.id);
-    res.render('songs/show', {song, skills});
+    res.render('songs/show', {song});
 }
 
 async function newPractice(req, res){
@@ -26,7 +20,7 @@ async function newPractice(req, res){
     const song = songs.id(req.params.id);
     res.render('songs/practice', {song});
 }
-//As you can see, we simply push in an object that's compatible with the embedded document's schema, call save on the parent doc, and redirect to wherever makes sense for the app.
+
 function createPractice(req, res){
     const songs = req.user.song;
     const song = songs.id(req.params.id);
@@ -39,34 +33,32 @@ function createPractice(req, res){
     })
 }
 
-
-//when i add stuff, it says undefined???
-//where is skillId coming from?
-async function addSkill(req, res){
-    const skills = req.user.skill;
-    const songs = req.user.song;
-    const song = songs.id(req.params.id);
-    const skill = skills.id(req.body.skillId);
-    
-    console.log(skill);
-    song.skillsNeeded.push(skill);
-    req.user.save(function(err){
-        res.redirect(`/songs/${song._id}`);
-    });
-    
-    // Song.findById(req.params.id, function(err, song) {
-    //     song.skillsNeeded.push(req.body.skillId);
-    //     song.save(function(err) {
-    //       res.redirect(`/songs/${song._id}`);
-    //     });
-    //   });
+//I'm not sure why there's a < before the button, but at least the functionality works. 
+function deleteSong(req, res){
+    req.user.song.pull(req.params.id);
+    req.user.save();
+    res.redirect('/');
 }
 
+function update(req, res){
+    const songs = req.user.song;
+    const song = songs.id(req.params.id);
+    song.song = req.body.song;
+    song.difficulty = req.body.difficulty;
+    req.user.save();
+    // keep these lines, make sure you remember what they do!
+    //req.params gets the url
+    //req.body gets the body submitted in the form.
+    // console.log(req.params);
+    // console.log(req.body);
+    res.redirect('/');
+}
 module.exports = {
     newSong, 
     create,
     showSong,
     createPractice,
     newPractice, 
-    addSkill
+    delete: deleteSong,
+    update
 }

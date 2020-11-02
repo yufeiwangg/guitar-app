@@ -6,6 +6,7 @@
                         <th>Skill</th>
                         <th>Difficulty</th>
                         <th>Details</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -13,8 +14,11 @@
                         <tr>
                             <td><%= s.skill %></td>
                             <td><%= s.difficulty %></td>
-        
                             <td><a href="/skills/<%= s._id %>">Details</a></td>
+                            <td><form action="/skills/<%= s._id %>?_method=DELETE"
+                                class="delete-form" method="POST">
+                                <button type="submit">Delete</button>
+                              </form></td>
                         </tr>
                     <% }); %>
                 </tbody>
@@ -30,6 +34,7 @@
                         <th>Song</th>
                         <th>Difficulty</th>
                         <th>Details</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +44,12 @@
                             <td><%= s.difficulty %></td>
         
                             <td><a href="/songs/<%= s._id %>">Details</a></td>
+                            <td>
+                                <form action="/songs/<%= s._id %>?_method=DELETE"
+                                    class="delete-form" method="POST">
+                                    <button type="submit">Delete</button>
+                                  </form>
+                            </td>
                         </tr>
                     <% }); %>
                 </tbody>

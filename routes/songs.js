@@ -8,7 +8,9 @@ router.get('/:id/practice', songsCtrl.newPractice);
 router.get('/:id', songsCtrl.showSong);
 
 router.post('/', songsCtrl.create);
-router.post('/:id/addskill', songsCtrl.addSkill);
 router.post('/:id/practice/create', songsCtrl.createPractice);
 
+router.post('/:id/update', songsCtrl.update);
+
+router.delete('/:id', songsCtrl.delete);
 module.exports = router;

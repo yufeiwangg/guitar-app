@@ -25,8 +25,6 @@ const skillSchema = new Schema({
         max: 5
     },
     timePracticed: [timePracticedSchema],
-    notes: [noteSchema], 
-    songs: [{type: Schema.Types.ObjectId, ref: "Song"}]
 })
 //i want to have multiple notes to add for myself to reference
 

@@ -24,9 +24,7 @@ const songSchema = new Schema({
         min: 0, 
         max: 5
     },
-    timePracticed: [timePracticedSchema],
-    notes: [noteSchema],
-    skillsNeeded: [{type: Schema.Types.ObjectId, ref: "Skill"}]
+    timePracticed: [timePracticedSchema]
 })
 
 module.exports = mongoose.model('Song', songSchema);

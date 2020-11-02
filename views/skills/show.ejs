@@ -32,25 +32,7 @@
       <% } else { %>
         <h5>No Practices Yet</h5>
       <% } %>
-
-      <div>Songs You can play with this skill:</div>
-  <ul>
-    <%- skill.songs.map(s => 
-      `<li>${s.song}</li>`
-    ).join('') %>
-  </ul>
-  <!-- end cast list -->
-</section>
-	
-<!-- add to cast form below this comment -->
-<form action="/skills/<%= skill._id %>/addsong" method="POST">
-  <select name="songId">
-    <%- songs.map(s => 
-      `<option value="${s._id}">${s.song}</option>`
-    ).join('') %>
-  </select>
-  <button type="submit">Add this song!</button>
-</form>
+      
 </body>
 </html>
 

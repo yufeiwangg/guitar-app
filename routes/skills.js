@@ -7,7 +7,7 @@ router.get('/:id/practice', skillsCtrl.newPractice);
 router.get('/:id', skillsCtrl.showSkill);
 
 router.post('/', skillsCtrl.create);
-router.post('/:id/addsong', skillsCtrl.addSong);
 router.post('/:id/practice/create', skillsCtrl.createPractice);
 
+router.delete('/:id', skillsCtrl.delete);
 module.exports = router;
